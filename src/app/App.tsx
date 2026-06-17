@@ -99,8 +99,17 @@ export default function App() {
     }
   };
 
-  const handleChoice = (c: "yes" | "maybe" | "no") => {
+  const handleChoice = async (c: "yes" | "maybe" | "no") => {
     setFinalChoice(c);
+    try {
+      await fetch('/api/respond', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ choice: c })
+      });
+    } catch (e) {
+      console.error("Failed to save response", e);
+    }
   };
 
   return (
