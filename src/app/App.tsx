@@ -8,7 +8,7 @@ type Section = "start" | "story1" | "story2" | "memories" | "proposal";
 type FinalChoice = "yes" | "maybe" | "no" | null;
 
 const storyMessages = [
-  "We started as just friends…",
+  "We started with a simple conversation",
   "But slowly, something shifted.",
   "You became the person I looked forward to talking to every single day.",
   "Every laugh, every late night — it all meant something.",
