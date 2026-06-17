@@ -46,68 +46,6 @@ function GradientBackground() {
   );
 }
 
-function MusicToggle() {
-  const [playing, setPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    audioRef.current = new Audio("/romantic.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.28;
-    return () => {
-      audioRef.current?.pause();
-    };
-  }, []);
-
-  const toggle = () => {
-    if (!audioRef.current) return;
-    if (playing) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(() => {});
-    }
-    setPlaying(!playing);
-  };
-
-  return (
-    <button
-      onClick={toggle}
-      title={playing ? "Pause music" : "Play music"}
-      style={{
-        position: "fixed",
-        top: 16,
-        right: 16,
-        zIndex: 100,
-        background: "rgba(255,255,255,0.08)",
-        border: "1px solid rgba(240,98,146,0.3)",
-        borderRadius: "50%",
-        width: 44,
-        height: 44,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        fontSize: "1.2rem",
-        backdropFilter: "blur(8px)",
-        transition: "transform 0.2s, background 0.2s",
-        color: "#f8bbd9",
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.transform = "scale(1.12)";
-        (e.currentTarget as HTMLButtonElement).style.background =
-          "rgba(240,98,146,0.2)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)";
-        (e.currentTarget as HTMLButtonElement).style.background =
-          "rgba(255,255,255,0.08)";
-      }}
-    >
-      {playing ? "🎵" : "🔇"}
-    </button>
-  );
-}
-
 function SectionWrapper({
   visible,
   children,
@@ -172,7 +110,6 @@ export default function App() {
     >
       <GradientBackground />
       <FloatingHearts />
-      <MusicToggle />
 
       {/* SECTION: Start */}
       <SectionWrapper visible={section === "start"}>
